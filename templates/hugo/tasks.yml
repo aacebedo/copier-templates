@@ -27,6 +27,10 @@
         sed -i '1a\  "html": { "linter": { "enabled": false }, "formatter": { "enabled": false } },' .biome.json
         echo "Disabled Biome's HTML linter and formatter in .biome.json (Go templates are not HTML)"
       fi
+      if ! grep -q 'src/layouts' .biome.json; then
+        sed -i '1a\  "files": { "includes": ["**", "!src/layouts"] },' .biome.json
+        echo "Excluded the Hugo layouts from Biome in .biome.json"
+      fi
     else
       echo "WARNING: .biome.json not found - apply the 'base' template first," \
         "then re-apply 'hugo' to adapt Biome to Hugo." >&2
@@ -50,9 +54,6 @@
         "then re-apply 'hugo' to add its ignores." >&2
     fi
   when: "{{ template == 'hugo' }}"
-# Words that codebook would otherwise flag in this template's own comments and
-# config. Spliced into the existing array rather than appended, since the file ends
-# with ignore_paths.
 - command: |
     if [ -f .codebook.toml ]; then
       if ! grep -q '"gohugoio"' .codebook.toml; then

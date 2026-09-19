@@ -13,7 +13,8 @@ shopt -s nullglob
 answers_files=(.copier-answers.*.yml)
 
 if [ "${#answers_files[@]}" -eq 0 ]; then
-	printf "\033[31mNo copier template is applied - run '%s'.\033[0m\n" "copier copy --trust -a .copier-answers.base.yml -d template=base gh:aacebedo/copier-templates ." >&2
+	printf "\033[31mNo copier template is applied - run '%s'.\033[0m\n" "copier copy --trust -a .copier-answers.base.yml \
+	-d template=base gh:aacebedo/copier-templates ." >&2
 	exit 1
 fi
 

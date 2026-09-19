@@ -1,6 +1,6 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: b84cc23
-_src_path: .
+_commit: 28e571e
+_src_path: gh:aacebedo/copier-templates
 biome_version: 2.5.14
 checkout_action_version: v7.0.1
 cocogitto_version: 7.0.0

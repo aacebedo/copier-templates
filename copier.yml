@@ -1,0 +1,6 @@
+_subdirectory: template
+with_hugo:
+  type: bool
+  default: true
+_exclude:
+  - "{% if not with_hugo %}hugo-tasks{% endif %}"

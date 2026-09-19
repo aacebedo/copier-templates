@@ -1,0 +1,84 @@
+---
+- command: |
+    if [ -f prek.toml ]; then
+      if ! grep -q 'id = "djlint"' prek.toml; then
+        cat >>prek.toml <<'EOF'
+
+    [[repos]]
+    repo = "local"
+
+    [[repos.hooks]]
+    id = "djlint"
+    name = "djlint"
+    entry = "djlint"
+    language = "system"
+    files = '^src/layouts/.*\.html$'
+    EOF
+        echo "Added the djlint hook to prek.toml"
+      fi
+    else
+      echo "WARNING: prek.toml not found - apply the 'base' template first," \
+        "then re-apply 'hugo' to add its pre-commit hook." >&2
+    fi
+  when: "{{ template == 'hugo' }}"
+- command: |
+    if [ -f .biome.json ]; then
+      if ! grep -q '"html"' .biome.json; then
+        sed -i '1a\  "html": { "linter": { "enabled": false }, "formatter": { "enabled": false } },' .biome.json
+        echo "Disabled Biome's HTML linter and formatter in .biome.json (Go templates are not HTML)"
+      fi
+    else
+      echo "WARNING: .biome.json not found - apply the 'base' template first," \
+        "then re-apply 'hugo' to adapt Biome to Hugo." >&2
+    fi
+  when: "{{ template == 'hugo' }}"
+- command: |
+    if [ -f .gitignore ]; then
+      if ! grep -qxF '/.build' .gitignore; then
+        cat >>.gitignore <<'EOF'
+
+    # Hugo
+    /.build
+    src/.hugo_build.lock
+    tests/node_modules/
+    tests/package-lock.json
+    EOF
+        echo "Added Hugo ignores to .gitignore"
+      fi
+    else
+      echo "WARNING: .gitignore not found - apply the 'base' template first," \
+        "then re-apply 'hugo' to add its ignores." >&2
+    fi
+  when: "{{ template == 'hugo' }}"
+# Words that codebook would otherwise flag in this template's own comments and
+# config. Spliced into the existing array rather than appended, since the file ends
+# with ignore_paths.
+- command: |
+    if [ -f .codebook.toml ]; then
+      if ! grep -q '"gohugoio"' .codebook.toml; then
+        words=$(cat <<'EOF'
+      "chroma",
+      "djlint",
+      "frontmatter",
+      "gohugoio",
+      "hugo",
+      "lighthouse",
+      "nodejs",
+      "permalink",
+      "pipx",
+      "puppeteer",
+      "scms",
+      "shortcode",
+      "shortcodes",
+      "unreviewed",
+    EOF
+    )
+        ADD="$words" awk 'BEGIN { add = ENVIRON["ADD"] } { print } /^words = \[$/ && !done { print add; done = 1 }' \
+          .codebook.toml >.codebook.toml.tmp && mv .codebook.toml.tmp .codebook.toml
+        echo "Added the Hugo vocabulary to .codebook.toml"
+      fi
+    else
+      echo "WARNING: .codebook.toml not found - apply the 'base' template first," \
+        "then re-apply 'hugo' to add its vocabulary." >&2
+    fi
+  when: "{{ template == 'hugo' }}"

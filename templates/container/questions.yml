@@ -1,0 +1,12 @@
+---
+hadolint_version:
+  when: "{{ template == 'container' }}"
+  type: str
+  help: hadolint version for mise to install
+  default: "2.15.1"
+
+dockerfmt_version:
+  when: "{{ template == 'container' }}"
+  type: str
+  help: dockerfmt (Dockerfile formatter) version for mise to install
+  default: "0.5.4"

@@ -1,0 +1,10 @@
+---
+- command: |
+    if [ ! -s LICENSE ]; then
+      mise x -- reuse download -o LICENSE "{{ license }}"
+      HOLDER="$(date +%Y) {{ github_owner }}" awk -v p="<year> <copyright holders>" \
+        '(i = index($0, p)) { $0 = substr($0, 1, i - 1) ENVIRON["HOLDER"] substr($0, i + length(p)) } 1' \
+        LICENSE >LICENSE.tmp && mv LICENSE.tmp LICENSE || { rm -f LICENSE.tmp; exit 1; }
+    fi
+    mise x -- reuse download --all
+  when: "{{ template == 'base' }}"

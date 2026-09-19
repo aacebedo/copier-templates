@@ -1,0 +1,35 @@
+---
+# Questions of the 'python' template, pulled into the root copier.yml.
+# Each is only asked when that template is the one being applied.
+package_name:
+  when: "{{ template == 'python' }}"
+  type: str
+  help: >-
+    Python project name, used in pyproject.toml. Note: Copier can't reliably
+    infer this from the destination directory (it's often invoked as `copier copy ...
+    .`), so please type it explicitly.
+  default: "my_package"
+
+python_version:
+  when: "{{ template == 'python' }}"
+  type: str
+  help: Python version for mise to install
+  default: "3.14.7"
+
+package_version:
+  when: "{{ template == 'python' }}"
+  type: str
+  help: Initial version of the package in pyproject.toml
+  default: "0.1.0"
+
+ruff_version:
+  when: "{{ template == 'python' }}"
+  type: str
+  help: Ruff version for mise to install
+  default: "0.16.8"
+
+pytest_version:
+  when: "{{ template == 'python' }}"
+  type: str
+  help: pytest version, pinned in pyproject.toml's dev dependency group
+  default: "9.1.1"

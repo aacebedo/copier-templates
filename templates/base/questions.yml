@@ -1,0 +1,181 @@
+---
+project_name:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: >-
+    Human-readable project name. Note: Copier can't reliably infer this from the
+    destination directory (it's often invoked as `copier copy ... .`, which carries no
+    real path info), so there's no smart default here - please type the real name.
+  default: "My Project"
+
+project_slug:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: Slug used in image names, URLs, etc.
+  default: "{{ project_name | lower | replace(' ', '-') }}"
+
+project_description:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: One-line project description
+  default: ""
+
+github_owner:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: >-
+    GitHub organization or user that owns the repository, also the copyright holder
+    written into REUSE.toml (and LICENSE, for MIT)
+  validator: >-
+    {% if not github_owner %}A GitHub owner is required{% endif %}
+
+with_ci:
+  when: "{{ template == 'base' }}"
+  type: bool
+  help: >-
+    Add GitHub Actions workflows (pr.yaml, release.yaml, update-deps.yaml, the setup
+    action they use, and the matching .mergify.yml)?
+  default: true
+
+license:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: >-
+    SPDX identifier of the project's license (e.g. Apache-2.0, MIT, MPL-2.0,
+    GPL-3.0-or-later). Required, with no default: licensing is a deliberate choice. Its
+    text is downloaded from SPDX into LICENSE and LICENSES/ (needs network), REUSE.toml
+    puts every file under it unless it carries its own SPDX header, and `reuse lint` is
+    wired into prek.
+  validator: "{% if not license %}A license is required{% endif %}"
+
+# --- Tools installed by mise (.mise/conf.d/00-base.toml) ---
+
+shellcheck_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: shellcheck version for mise to install
+  default: "0.11.0"
+
+editorconfig_checker_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: editorconfig-checker version for mise to install
+  default: "4.0.1"
+
+trivy_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: Trivy version for mise to install
+  default: "0.74.0"
+
+ryl_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: ryl (YAML linter) version for mise to install
+  default: "0.22.0"
+
+prek_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: prek version for mise to install
+  default: "0.5.3"
+
+shfmt_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: shfmt version for mise to install
+  default: "3.14.1"
+
+yamlfmt_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: yamlfmt version for mise to install
+  default: "0.21.0"
+
+tombi_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: Tombi version for mise to install
+  default: "1.5.5"
+
+cocogitto_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: Cocogitto version for mise to install
+  default: "7.0.0"
+
+gh_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: GitHub CLI version for mise to install
+  default: "2.101.0"
+
+rumdl_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: rumdl version for mise to install
+  default: "0.2.73"
+
+updatecli_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: Updatecli version for mise to install
+  default: "0.121.0"
+
+biome_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: Biome version for mise to install, also used for the .biome.json schema URL
+  default: "2.5.14"
+
+codebook_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: Codebook version for mise to install
+  default: "0.3.43"
+
+uv_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: uv version for mise to install, also used by mise to install the pipx:* tools
+  default: "0.12.16"
+
+reuse_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: REUSE tool version for mise to install
+  default: "6.2.0"
+
+copier_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: Copier version for mise to install, used to apply and check the templates
+  default: "9.18.2"
+
+# --- CI (GitHub Actions refs and the container image the jobs run in) ---
+
+runner_ubuntu_version:
+  type: str
+  help: Ubuntu version of the GitHub-hosted runner every workflow job runs on (runs-on)
+  default: "26.04"
+  when: "{{ template == 'base' and with_ci }}"
+
+checkout_action_version:
+  type: str
+  help: Git ref of actions/checkout used by every workflow
+  default: "v7.0.1"
+  when: "{{ template == 'base' and with_ci }}"
+
+mise_action_version:
+  type: str
+  help: Git ref of jdx/mise-action used by the setup action
+  default: "v4.3.0"
+  when: "{{ template == 'base' and with_ci }}"
+
+devcontainer_image_version:
+  when: "{{ template == 'base' }}"
+  type: str
+  help: >-
+    Tag of ghcr.io/aacebedo/devcontainer-base, used by the devcontainer and by the CI
+    jobs so both run in the same environment
+  default: "1.22.0"

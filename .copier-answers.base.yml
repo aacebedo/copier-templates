@@ -1,0 +1,31 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: b84cc23
+_src_path: .
+biome_version: 2.5.14
+checkout_action_version: v7.0.1
+cocogitto_version: 7.0.0
+codebook_version: 0.3.43
+copier_version: 9.18.2
+devcontainer_image_version: 1.22.0
+editorconfig_checker_version: 4.0.1
+gh_version: 2.101.0
+github_owner: aacebedo
+license: Apache-2.0
+mise_action_version: v4.3.0
+prek_version: 0.5.3
+project_description: Stackable Copier templates
+project_name: copier-templates
+project_slug: copier-templates
+reuse_version: 6.2.0
+rumdl_version: 0.2.73
+runner_ubuntu_version: '26.04'
+ryl_version: 0.22.0
+shellcheck_version: 0.11.0
+shfmt_version: 3.14.1
+template: base
+tombi_version: 1.5.5
+trivy_version: 0.74.0
+updatecli_version: 0.121.0
+uv_version: 0.12.16
+with_ci: true
+yamlfmt_version: 0.21.0

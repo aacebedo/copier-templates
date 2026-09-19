@@ -1,0 +1,6 @@
+.copier-answers.*.yml
+!/.copier-answers.base.yml
+__pycache__/
+.venv/
+/target
+.rumdl_cache/

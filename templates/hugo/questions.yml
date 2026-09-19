@@ -1,0 +1,51 @@
+---
+site_title:
+  when: "{{ template == 'hugo' }}"
+  type: str
+  help: >-
+    Site title, rendered in <title> and used as the RSS feed name. Note: Copier can't
+    reliably infer this from the destination directory (it's often invoked as `copier
+    copy ... .`), so please type it explicitly.
+  default: "My Site"
+
+base_url:
+  when: "{{ template == 'hugo' }}"
+  type: str
+  help: Canonical base URL of the published site, with a trailing slash
+  default: "https://example.com/"
+
+hugo_version:
+  when: "{{ template == 'hugo' }}"
+  type: str
+  help: Hugo (extended) version for mise to install
+  default: "0.166.0"
+
+go_version:
+  when: "{{ template == 'hugo' }}"
+  type: str
+  help: Go version for mise to install, used by Hugo modules
+  default: "1.27.1"
+
+node_version:
+  when: "{{ template == 'hugo' }}"
+  type: str
+  help: Node.js version for mise to install, used by the Lighthouse test
+  default: "26.9.0"
+
+djlint_version:
+  when: "{{ template == 'hugo' }}"
+  type: str
+  help: djlint version for mise to install
+  default: "1.46.1"
+
+lighthouse_version:
+  when: "{{ template == 'hugo' }}"
+  type: str
+  help: Lighthouse version used by the smoke test
+  default: "13.5.0"
+
+puppeteer_version:
+  when: "{{ template == 'hugo' }}"
+  type: str
+  help: Puppeteer version used by the smoke test to drive Chrome
+  default: "25.11.0"

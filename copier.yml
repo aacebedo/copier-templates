@@ -1,0 +1,40 @@
+---
+_min_copier_version: "9.0.0"
+_subdirectory: "templates/{{ template }}/template"
+_envops:
+  keep_trailing_newline: true
+_exclude:
+  - "~*"
+  - "*.py[co]"
+  - "__pycache__"
+  - ".git"
+  - ".DS_Store"
+  - ".svn"
+  - "{% if template == 'base' and not with_ci %}.github{% endif %}"
+  - "{% if template == 'base' and not with_ci %}.mergify.yml{% endif %}"
+
+template:
+  type: str
+  help: >-
+    Template to apply. Each one has its own answers file, so pass the matching
+    -a .copier-answers.<template>.yml
+  choices:
+    - base
+    - container
+    - hugo
+    - python
+    - rust
+
+# Each template's tasks live in templates/<name>/tasks.yml, gated on the chosen template.
+_tasks: !include "templates/*/tasks.yml"
+
+---
+!include templates/base/questions.yml
+---
+!include templates/container/questions.yml
+---
+!include templates/hugo/questions.yml
+---
+!include templates/python/questions.yml
+---
+!include templates/rust/questions.yml

@@ -1,0 +1,15 @@
+[project]
+name = "{{ package_name }}"
+version = "{{ package_version }}"
+requires-python = ">={{ python_version.split('.')[:2] | join('.') }}"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest=={{ pytest_version }}"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py{{ python_version.split('.')[:2] | join('') }}"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]

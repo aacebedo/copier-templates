@@ -1,0 +1,27 @@
+---
+crate_name:
+  when: "{{ template == 'rust' }}"
+  type: str
+  help: >-
+    Rust crate/package name. Note: Copier can't reliably infer this from the destination
+    directory (it's often invoked as `copier copy ... .`), so please type it explicitly.
+  default: "my-crate"
+
+rust_edition:
+  when: "{{ template == 'rust' }}"
+  type: str
+  help: Rust edition
+  choices: ["2021", "2024"]
+  default: "2024"
+
+rust_version:
+  when: "{{ template == 'rust' }}"
+  type: str
+  help: Rust toolchain version for mise to install
+  default: "1.98.1"
+
+crate_version:
+  when: "{{ template == 'rust' }}"
+  type: str
+  help: Initial version of the crate in Cargo.toml
+  default: "0.1.0"

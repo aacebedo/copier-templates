@@ -1,0 +1,71 @@
+---
+- command: |
+    if [ -f prek.toml ]; then
+      if ! grep -q 'id = "ruff-check"' prek.toml; then
+        cat >>prek.toml <<'EOF'
+
+    [[repos]]
+    repo = "local"
+
+    [[repos.hooks]]
+    id = "ruff-check"
+    name = "ruff check"
+    entry = "ruff check --fix"
+    language = "system"
+    types_or = ["python", "pyi"]
+
+    [[repos]]
+    repo = "local"
+
+    [[repos.hooks]]
+    id = "ruff-format"
+    name = "ruff format"
+    entry = "ruff format"
+    language = "system"
+    types_or = ["python", "pyi"]
+    EOF
+        echo "Added Python hooks to prek.toml"
+      fi
+    else
+      echo "WARNING: prek.toml not found - apply the 'base' template first," \
+        "then re-apply 'python' to add its pre-commit hooks." >&2
+    fi
+  when: "{{ template == 'python' }}"
+- command: |
+    if [ -f .gitignore ]; then
+      if ! grep -qxF '__pycache__/' .gitignore; then
+        cat >>.gitignore <<'EOF'
+
+    # Python
+    __pycache__/
+    *.pyc
+    .venv/
+    .pytest_cache/
+    .ruff_cache/
+    EOF
+        echo "Added Python ignores to .gitignore"
+      fi
+    else
+      echo "WARNING: .gitignore not found - apply the 'base' template first," \
+        "then re-apply 'python' to add its ignores." >&2
+    fi
+  when: "{{ template == 'python' }}"
+- command: |
+    if [ -f .codebook.toml ]; then
+      if ! grep -q '"pytest"' .codebook.toml; then
+        ADD=$(cat <<'EOF'
+      "cpython",
+      "pyproject",
+      "pytest",
+      "venv",
+    EOF
+    )
+        ADD="$ADD" awk '{ print } /^words = \[$/ && !done { print ENVIRON["ADD"]; done = 1 }' \
+          .codebook.toml >.codebook.toml.tmp && mv .codebook.toml.tmp .codebook.toml
+        echo "Added the Python vocabulary to .codebook.toml"
+      fi
+    else
+      echo "WARNING: .codebook.toml not found - apply the 'base' template first," \
+        "then re-apply 'python' to add its vocabulary." >&2
+    fi
+  when: "{{ template == 'python' }}"

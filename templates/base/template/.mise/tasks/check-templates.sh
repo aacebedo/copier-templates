@@ -13,7 +13,7 @@ shopt -s nullglob
 answers_files=(.copier-answers.*.yml)
 
 if [ "${#answers_files[@]}" -eq 0 ]; then
-	printf "\033[31mNo copier template is applied - run '%s'.\033[0m\n" "mise run apply-templates base" >&2
+	printf "\033[31mNo copier template is applied - run '%s'.\033[0m\n" "copier copy --trust -a .copier-answers.base.yml -d template=base gh:aacebedo/copier-templates ." >&2
 	exit 1
 fi
 
@@ -26,8 +26,8 @@ for answers_file in "${answers_files[@]}"; do
 	# templates repository has a release tag there is nothing to compare against.
 	commit="$(sed -nE 's/^_commit: *//p' "$answers_file")"
 	if [ -z "$commit" ]; then
-		printf "\033[31m%s records no template version (_commit) in %s - re-apply it with '%s'.\033[0m\n" \
-			"$name" "$answers_file" "mise run apply-templates" >&2
+		printf "\033[31m%s records no template version (_commit) in %s - update it with '%s'.\033[0m\n" \
+			"$name" "$answers_file" "mise run update-templates" >&2
 		status=1
 		continue
 	fi
@@ -44,7 +44,7 @@ for answers_file in "${answers_files[@]}"; do
 	0) ;;
 	2)
 		printf "\033[31m%s has a newer template version - run '%s'.\033[0m\n" \
-			"$name" "mise run apply-templates" >&2
+			"$name" "mise run update-templates" >&2
 		status=1
 		;;
 	*)

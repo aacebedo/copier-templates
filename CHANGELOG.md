@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file. See [conven
 ## [v0.1.0](https://github.com/aacebedo/copier-templates/compare/11b7c4aa6c268ba4039f57eb6121002d758255ce..v0.1.0) - 2026-09-19
 #### Features
 - initial commit - ([11b7c4a](https://github.com/aacebedo/copier-templates/commit/11b7c4aa6c268ba4039f57eb6121002d758255ce)) - Alexandre ACEBEDO
+#### Bug Fixes
+- update template - ([e9d59d4](https://github.com/aacebedo/copier-templates/commit/e9d59d46ff402869fa35b197db6f2b57598f49eb)) - Alexandre ACEBEDO
+- change update templates logic - ([7c71761](https://github.com/aacebedo/copier-templates/commit/7c71761a3d831244d6806732f682a2fcec8bf849)) - Alexandre ACEBEDO
+- add venv in codebook - ([2c1b277](https://github.com/aacebedo/copier-templates/commit/2c1b2774effa16b848a52b59521a5a67878ca11b)) - Alexandre ACEBEDO
+#### Miscellaneous Chores
+- (**version**) v0.1.0 [skip ci] - ([ad26265](https://github.com/aacebedo/copier-templates/commit/ad262656b6f4c41983f74ceebfdc319a3bec514d)) - github-actions[bot]
+
+- - -
+
+## [v0.1.0](https://github.com/aacebedo/copier-templates/compare/11b7c4aa6c268ba4039f57eb6121002d758255ce..v0.1.0) - 2026-09-19
+#### Features
+- initial commit - ([11b7c4a](https://github.com/aacebedo/copier-templates/commit/11b7c4aa6c268ba4039f57eb6121002d758255ce)) - Alexandre ACEBEDO
 
 - - -
 

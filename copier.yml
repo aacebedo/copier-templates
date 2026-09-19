@@ -5,4 +5,4 @@ with_hugo:
 _exclude:
   - "{% if not with_hugo %}hugo-tasks{% endif %}"
   - "{% if not with_hugo %}.mise/tasks/hugo{% endif %}"
-  - "{% if not with_hugo %}.mise/conf.d/10-hugo.toml.jinja{% endif %}"
+  - "{% if not with_hugo %}.mise/conf.d/10-hugo.toml{% endif %}"

@@ -7,7 +7,7 @@ cocogitto_version: 7.0.0
 codebook_version: 0.3.43
 copier_version: 9.18.2
 devcontainer_image_version: 1.22.0
-editorconfig_checker_version: 4.0.1
+editorconfig_checker_version: '4.0.2'
 gh_version: 2.101.0
 github_owner: aacebedo
 license: Apache-2.0

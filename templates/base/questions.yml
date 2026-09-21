@@ -138,7 +138,7 @@ uv_version:
   when: "{{ template == 'base' }}"
   type: str
   help: uv version for mise to install, also used by mise to install the pipx:* tools
-  default: "0.12.16"
+  default: "0.12.17"
 
 reuse_version:
   when: "{{ template == 'base' }}"

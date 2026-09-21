@@ -28,4 +28,4 @@ trivy_version: 0.74.0
 updatecli_version: 0.121.0
 uv_version: 0.12.16
 with_ci: true
-yamlfmt_version: 0.21.0
+yamlfmt_version: '0.21.0'

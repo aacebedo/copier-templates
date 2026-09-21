@@ -5,7 +5,7 @@ biome_version: 2.5.14
 checkout_action_version: v7.0.1
 cocogitto_version: 7.0.0
 codebook_version: 0.3.43
-copier_version: 9.18.2
+copier_version: '9.18.2'
 devcontainer_image_version: 1.22.0
 editorconfig_checker_version: 4.0.1
 gh_version: 2.101.0

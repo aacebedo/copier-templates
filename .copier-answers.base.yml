@@ -21,7 +21,7 @@ rumdl_version: 0.2.73
 runner_ubuntu_version: '26.04'
 ryl_version: 0.22.0
 shellcheck_version: 0.11.0
-shfmt_version: 3.14.1
+shfmt_version: '3.14.1'
 template: base
 tombi_version: 1.5.5
 trivy_version: 0.74.0

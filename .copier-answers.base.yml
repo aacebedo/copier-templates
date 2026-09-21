@@ -12,7 +12,7 @@ gh_version: 2.101.0
 github_owner: aacebedo
 license: Apache-2.0
 mise_action_version: v4.3.0
-prek_version: 0.5.3
+prek_version: '0.5.3'
 project_description: Stackable Copier templates
 project_name: copier-templates
 project_slug: copier-templates

@@ -17,7 +17,7 @@ project_description: Stackable Copier templates
 project_name: copier-templates
 project_slug: copier-templates
 reuse_version: 6.2.0
-rumdl_version: 0.2.73
+rumdl_version: '0.2.75'
 runner_ubuntu_version: '26.04'
 ryl_version: 0.22.0
 shellcheck_version: 0.11.0

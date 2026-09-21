@@ -132,7 +132,7 @@ codebook_version:
   when: "{{ template == 'base' }}"
   type: str
   help: Codebook version for mise to install
-  default: "0.3.43"
+  default: "0.3.42"
 
 uv_version:
   when: "{{ template == 'base' }}"

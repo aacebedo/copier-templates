@@ -114,7 +114,7 @@ rumdl_version:
   when: "{{ template == 'base' }}"
   type: str
   help: rumdl version for mise to install
-  default: "0.2.73"
+  default: "0.2.75"
 
 updatecli_version:
   when: "{{ template == 'base' }}"

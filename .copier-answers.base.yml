@@ -25,7 +25,7 @@ shfmt_version: 3.14.1
 template: base
 tombi_version: 1.5.5
 trivy_version: 0.74.0
-updatecli_version: 0.121.0
+updatecli_version: '0.121.0'
 uv_version: 0.12.16
 with_ci: true
 yamlfmt_version: 0.21.0

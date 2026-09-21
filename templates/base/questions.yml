@@ -60,7 +60,7 @@ editorconfig_checker_version:
   when: "{{ template == 'base' }}"
   type: str
   help: editorconfig-checker version for mise to install
-  default: "4.0.1"
+  default: "4.0.2"
 
 trivy_version:
   when: "{{ template == 'base' }}"
